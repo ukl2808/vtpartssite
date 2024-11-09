@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using vtpartssite.Service;
 
 namespace vtpartssite.Controllers
 {
@@ -6,10 +7,18 @@ namespace vtpartssite.Controllers
     [Route("api/[controller]")]
     public class HelloWorldController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult Get()
+        private readonly INewService _newService;
+
+        public HelloWorldController(INewService newService)
         {
-            return Ok("Hello World");
+            _newService = newService;
+        }
+
+        [HttpGet("get-service-message")]
+        public IActionResult GetServiceMessage()
+        {
+            var message = _newService.GetMessage();
+            return Ok(message);
         }
     }
 }
