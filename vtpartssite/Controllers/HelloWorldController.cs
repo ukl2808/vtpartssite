@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using vtpartssite.Service;
+using vtpartssite.Interfaces;
 
 namespace vtpartssite.Controllers
 {
@@ -20,5 +20,13 @@ namespace vtpartssite.Controllers
             var message = _newService.GetMessage();
             return Ok(message);
         }
+
+        [HttpGet("get-repository-message")]
+        public IActionResult GetMessageFromRepository()
+        {
+            var message = _newService.GetMessageFromRepository();
+            return Ok(message);
+        }
+
     }
 }
